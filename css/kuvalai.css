@@ -1,18 +1,31 @@
 .item {
-    color: #666;
-    background: #333;
-    height: 300px;
-    line-height: 300px; /* Align the text vertically center. */
-    font-size: 52px;
-    text-align: center;    
+    color: black;
+    background: white;
     font-family: "trebuchet ms", sans-serif;    
-}
-.carousel{
-    margin-top: 20px;
+    padding: 8px;
+    height: 90%
 }
 .carousel-control{
-	top: 50%;
+	top: 90%;
 }
-.kuvalai{
-	margin: 20px;
+.code-area{
+	margin: 5px;
+	width: 100%;
+	height: 60%;
+	background: lightyellow
+}
+.code-output{
+	margin: 5px;
+	width: 100%;
+	height: 40%;
+	background: black;
+	color: white
+}
+.previous{
+	position: absolute;
+	left: 1%
+}
+.next{
+	position: absolute;
+	right: 1%
 }

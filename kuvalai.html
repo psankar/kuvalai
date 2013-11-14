@@ -8,24 +8,48 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="kuvalai">
-    <div id="m" class="carousel slide">
-    	<!-- Carousel indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#m" data-slide-to="0" class="active"></li>
-            <li data-target="#m" data-slide-to="1"></li>
-            <li data-target="#m" data-slide-to="2"></li>
-        </ol>   
-        <!-- Carousel items -->
-        <div class="carousel-inner">
-            <div class="active item">Slide 1</div>
-            <div class="item">Slide 2</div>
-            <div class="item">Slide 3</div>
-        </div>
-        <!-- Carousel nav -->
-        <a class="carousel-control left" href="#m" data-slide="prev">‹</a>
-        <a class="carousel-control right" href="#m" data-slide="next">›</a>
-    </div>
+<div>
+	<div id="m" class="carousel slide">
+		<!-- Carousel indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#m" data-slide-to="0" class="active"></li>
+			<li data-target="#m" data-slide-to="1"></li>
+			<li data-target="#m" data-slide-to="2"></li>
+		</ol>
+		<!-- Carousel items -->
+		<div class="carousel-inner">
+
+			<div class="active item">
+				<div class="row" style="margin:1px" >
+					<div class="col-xs-8">
+						<div class="row">
+							<textarea id=kuvCode class="code-area">What</textarea>
+						</div>
+						<div class="row">
+							<textarea id=kuvOutput class="code-output" readonly>Where</textarea>
+						</div>
+						<button class="btn btn-primary" style="position:relative;top:-50px;right:-90%">Execute</button>
+					</div>
+					<div class="col-xs-2">
+						Something
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="item">
+				<div class="row">
+					<div class="col-xs-12 col-md-8">.col-xs-12 .col-md-8</div>
+					<div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+				</div>
+			</div>
+			<div class="item">Slide 3</div>
+		</div>
+		<!-- Carousel nav -->
+		<button class="previous" href="#m" data-slide="prev">Prev</button>
+		<button class="next" href="#m" data-slide="next">Next</button>
+	</div>
 </div>
 </body>
 </html>  
