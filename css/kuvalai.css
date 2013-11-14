@@ -1,0 +1,18 @@
+.item {
+    color: #666;
+    background: #333;
+    height: 300px;
+    line-height: 300px; /* Align the text vertically center. */
+    font-size: 52px;
+    text-align: center;    
+    font-family: "trebuchet ms", sans-serif;    
+}
+.carousel{
+    margin-top: 20px;
+}
+.carousel-control{
+	top: 50%;
+}
+.kuvalai{
+	margin: 20px;
+}
