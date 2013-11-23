@@ -4,6 +4,7 @@
 <title>Kuvalai</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/kuvalai.css">
+<script type="text/javascript" src="js/kuvalai.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 </head>
@@ -23,7 +24,7 @@
 				<div class="row" style="margin:1px" >
 					<div class="col-xs-8">
 						<div class="row">
-							<textarea id=kuvCode class="code-area">
+							<textarea id="kuvCode1" class="code-area">
 #include <stdio.h>
 
 int main()
@@ -33,9 +34,9 @@ int main()
 }</textarea>
 						</div>
 						<div class="row">
-							<textarea id=kuvOutput class="code-output" readonly>Where</textarea>
+							<textarea id=kuvOutput1 class="code-output" readonly>Where</textarea>
 						</div>
-						<button class="btn btn-primary" style="position:relative;top:-50px;right:-90%">Execute</button>
+						<button class="btn btn-primary" style="position:relative;top:-50px;right:-90%" onclick="executeCode(1)">Execute</button>
 					</div>
 					<div class="column">
 <h1>Hello World!</h1>

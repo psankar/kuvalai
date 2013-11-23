@@ -18,3 +18,12 @@ the bootstrap project page for their license.
 * css/bootstrap.min.css
 * js/bootstrap.min.js
 * js/jquery.min.js
+
+#Usage
++ Install Go from http://golang.org
++ go run compiler-as-a-service.go
++ Open kuvalai.html in your browser
++ Edit the source in the first slide as you wish and press the Execute button.
+The program that you have typed will be executed and the output will be printed
+in the textarea. If there is a compilation error, the compiler error too will be
+printed the same place.
