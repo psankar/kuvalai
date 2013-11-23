@@ -1,31 +1,31 @@
 .item {
     color: black;
     background: white;
-    font-family: "trebuchet ms", sans-serif;    
+    font-family: "trebuchet ms", sans-serif;
     padding: 8px;
     height: 90%
 }
-.carousel-control{
-	top: 90%;
+.carousel-control {
+    top: 90%;
 }
-.code-area{
-	margin: 5px;
-	width: 98%;
-	height: 60%;
-	background: lightyellow
+.code-area {
+    margin: 5px;
+    width: 98%;
+    height: 60%;
+    background: lightyellow
 }
-.code-output{
-	margin: 5px;
-	width: 98%;
-	height: 40%;
-	background: black;
-	color: white
+.code-output {
+    margin: 5px;
+    width: 98%;
+    height: 40%;
+    background: black;
+    color: white
 }
-.previous{
-	position: absolute;
-	left: 1%
+.previous {
+    position: absolute;
+    left: 1%
 }
-.next{
-	position: absolute;
-	right: 1%
+.next {
+    position: absolute;
+    right: 1%
 }

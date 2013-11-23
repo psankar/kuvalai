@@ -3,11 +3,11 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
+	"net/http"
 	"os"
 	"os/exec"
-	"fmt"
-	"net/http"
 )
 
 type Message struct {
@@ -38,7 +38,6 @@ func compilerService(w http.ResponseWriter, req *http.Request) {
 	}
 	fmt.Println(c.Code)
 
-
 	/* create a temporary file with the passed sourcecode as the content */
 	var tmpFile *os.File
 	tmpFile, err = ioutil.TempFile("", "")
@@ -56,7 +55,6 @@ func compilerService(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-
 	/* compile+execute the source code and get the output */
 	/* there is an assumption here that the tmpFileName.out will be a new
 	 * file name */
@@ -69,17 +67,15 @@ func compilerService(w http.ResponseWriter, req *http.Request) {
 		fmt.Println("Error running the compiler command")
 		fmt.Println(err)
 	} else {
-		cmd = exec.Command(tmpFileName+".out")
+		cmd = exec.Command(tmpFileName + ".out")
 		cmd.Stdout = &out
 		cmd.Stderr = &out
 		_ = cmd.Run()
 	}
 
-
 	/* Remove the temporary files created */
 	_ = os.Remove(tmpFileName)
-	_ = os.Remove(tmpFileName+".out")
-
+	_ = os.Remove(tmpFileName + ".out")
 
 	/* Return the output/error of the cpp program to the caller */
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")

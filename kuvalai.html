@@ -1,65 +1,69 @@
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Kuvalai</title>
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="css/kuvalai.css">
-<script type="text/javascript" src="js/kuvalai.js"></script>
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Kuvalai</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/kuvalai.css">
+    <script type="text/javascript" src="js/kuvalai.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
 </head>
+
 <body>
-<div>
-	<div id="m" class="carousel slide">
-		<!-- Carousel indicators -->
-		<ol class="carousel-indicators">
-			<li data-target="#m" data-slide-to="0" class="active"></li>
-			<li data-target="#m" data-slide-to="1"></li>
-			<li data-target="#m" data-slide-to="2"></li>
-		</ol>
-		<!-- Carousel items -->
-		<div class="carousel-inner">
+    <div>
+        <div id="m" class="carousel slide">
+            <!-- Carousel indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#m" data-slide-to="0" class="active"></li>
+                <li data-target="#m" data-slide-to="1"></li>
+                <li data-target="#m" data-slide-to="2"></li>
+            </ol>
+            <!-- Carousel items -->
+            <div class="carousel-inner">
 
-			<div class="active item">
-				<div class="row" style="margin:1px" >
-					<div class="col-xs-8">
-						<div class="row">
-							<textarea id="kuvCode1" class="code-area">
-#include <stdio.h>
+                <!-- Slide 0 -->
+                <div class="active item">
+                    <div class="row" style="margin:1px">
+                        <div class="col-xs-8">
+                            <div class="row">
+                                <textarea id="kuvCode1" class="code-area">#include <stdio.h>
 
-int main()
-{
-	printf("Hello World\n");
-	return 0;
-}</textarea>
-						</div>
-						<div class="row">
-							<textarea id=kuvOutput1 class="code-output" readonly>Press Execute to run the above program</textarea>
-						</div>
-						<button class="btn btn-primary" style="position:relative;top:-50px;right:-90%" onclick="executeCode(1)">Execute</button>
-					</div>
-					<div class="column">
-<h1>Hello World!</h1>
-The quintessential first program for any programming language.</br>
-And look we can have <b>bold</b> and <i>italics</i> text here.
-					</div>
-				</div>
-			</div>
-
+int main() { 
+	printf("Hello World\n"); 
+	return 0; 
+} </textarea>
+                            </div>
+                            <div class="row">
+                                <textarea id=kuvOutput1 class="code-output" readonly>Press Execute to run the above program</textarea>
+                            </div>
+                            <button class="btn btn-primary" style="position:relative;top:-50px;right:-90%" onclick="executeCode(1)">Execute</button>
+                        </div>
+                        <div class="column">
+                            <h1>Hello World!</h1>
+                            The quintessential first program for any programming language.</br>
+                            And look we can have <b>bold</b> and <i>italics</i> text here.
+                        </div>
+                    </div>
+                </div>
 
 
-			<div class="item">
-				<div class="row">
-					<div class="col-xs-12 col-md-8">.col-xs-12 .col-md-8</div>
-					<div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
-				</div>
-			</div>
-			<div class="item">Slide 3</div>
-		</div>
-		<!-- Carousel nav -->
-		<button class="previous" href="#m" data-slide="prev">Prev</button>
-		<button class="next" href="#m" data-slide="next">Next</button>
-	</div>
-</div>
+                <!-- Slide 1 -->
+                <div class="item">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-8">.col-xs-12 .col-md-8</div>
+                        <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="item">Slide 3</div>
+            </div>
+            <!-- Carousel nav -->
+            <button class="previous" href="#m" data-slide="prev">Prev</button>
+            <button class="next" href="#m" data-slide="next">Next</button>
+        </div>
+    </div>
 </body>
-</html>  
+
+</html>
