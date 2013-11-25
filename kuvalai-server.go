@@ -84,7 +84,15 @@ func compilerService(w http.ResponseWriter, req *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
-	m := Message{out.String()}
+	var result string
+	result = out.String ()	
+
+	/* Format the output in case of error, replace the filename to sample.cpp */
+	if (err != nil) {
+		result = strings.Replace (result, tmpFileName, "sample.cpp", -1)
+	}
+
+	m := Message{result}
 
 	var b []byte
 	b, err = json.Marshal(m)
