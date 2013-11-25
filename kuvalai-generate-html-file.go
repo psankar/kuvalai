@@ -67,16 +67,16 @@ func main() {
 			fmt.Println("End of a slide reached", newSlide.Contents)
 			/* Write slide into the file as html */
 
-			var itemdiv string
+			var tmplString string
 			if newSlide.SlideNumber == 1 {
-				itemdiv = `                <div class="active item">`
+				tmplString = `                <div class="active item">` + "\n"
 			} else {
-				itemdiv = `                <div class="item">`
+				tmplString = `                <div class="item">` + "\n"
 			}
 
-			var tmpl *template.Template
-			tmpl, err = template.New("test").Parse(itemdiv + `                    <div class="row" style="margin:1px">
-                        <div class="col-xs-8">
+			tmplString += `                    <div class="row" style="margin:1px">` + "\n"
+			if len(newSlide.Code) > 0 {
+				tmplString += `                        <div class="col-xs-8">
                             <div class="row">
 			    <textarea id="kuvCode{{.SlideNumber}}" class="code-area">{{.Code}}</textarea>
                             </div>
@@ -84,12 +84,16 @@ func main() {
 			    <textarea id="kuvOutput{{.SlideNumber}}" class="code-output" readonly>Press Execute to run the above program</textarea>
                             </div>
                             <button class="btn btn-primary" style="position:relative;top:-50px;right:-90%" onclick="executeCode({{.SlideNumber}})">Execute</button>
-                        </div>
-                        <div class="column">
+                        </div>` + "\n"
+			}
+			tmplString += `<div class="column">
 {{.Contents}}
                         </div>
                     </div>
-                </div>`)
+                </div>` + "\n"
+
+			var tmpl *template.Template
+			tmpl, err = template.New("test").Parse(tmplString)
 			if err != nil {
 				panic(err)
 				return
