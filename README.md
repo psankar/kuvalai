@@ -22,7 +22,8 @@ the bootstrap project page for their license.
 #Usage
 + Install Go from http://golang.org
 + go run compiler-as-a-service.go
-+ Open kuvalai.html in your browser
++ go run kuvalai-generate-html-file.go ; # Generates kuvalai-example.html from kuvalai-example.md
++ Open kuvalai-example.html in your browser
 + Edit the source in the first slide as you wish and press the Execute button.
 The program that you have typed will be executed and the output will be printed
 in the textarea. If there is a compilation error, the compiler error too will be

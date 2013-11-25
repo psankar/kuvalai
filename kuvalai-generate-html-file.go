@@ -3,14 +3,16 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"strings"
 	"text/template"
 )
 
 type slide struct {
-	Contents string
-	Code     string
+	Contents    string
+	Code        string
+	SlideNumber int
 }
 
 func main() {
@@ -55,7 +57,7 @@ func main() {
             <!-- Carousel items -->
             <div class="carousel-inner">`)
 
-	newSlide := slide{"", ""}
+	newSlide := slide{"", "", 1}
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -65,17 +67,23 @@ func main() {
 			fmt.Println("End of a slide reached", newSlide.Contents)
 			/* Write slide into the file as html */
 
+			var itemdiv string
+			if newSlide.SlideNumber == 1 {
+				itemdiv = `                <div class="active item">`
+			} else {
+				itemdiv = `                <div class="item">`
+			}
+
 			var tmpl *template.Template
-			tmpl, err = template.New("test").Parse(`                <div class="item">
-                    <div class="row" style="margin:1px">
+			tmpl, err = template.New("test").Parse(itemdiv + `                    <div class="row" style="margin:1px">
                         <div class="col-xs-8">
                             <div class="row">
-			    <textarea id="kuvCode1" class="code-area">{{.Code}}</textarea>
+			    <textarea id="kuvCode{{.SlideNumber}}" class="code-area">{{.Code}}</textarea>
                             </div>
                             <div class="row">
-                                <textarea id=kuvOutput1 class="code-output" readonly>Press Execute to run the above program</textarea>
+			    <textarea id="kuvOutput{{.SlideNumber}}" class="code-output" readonly>Press Execute to run the above program</textarea>
                             </div>
-                            <button class="btn btn-primary" style="position:relative;top:-50px;right:-90%" onclick="executeCode(1)">Execute</button>
+                            <button class="btn btn-primary" style="position:relative;top:-50px;right:-90%" onclick="executeCode({{.SlideNumber}})">Execute</button>
                         </div>
                         <div class="column">
 {{.Contents}}
@@ -95,14 +103,25 @@ func main() {
 
 			newSlide.Contents = ""
 			newSlide.Code = ""
+			newSlide.SlideNumber++
 
 		} else if strings.HasPrefix(line, ".code") {
 			/* TODO Read the file pointed by line and get its
 			 * contents here */
-			newSlide.Code = line
+			filePath := strings.TrimPrefix(line, ".code ")
+			var code []byte
+			code, err = ioutil.ReadFile(filePath)
+			if err != nil {
+				panic(err)
+				return
+			}
+			newSlide.Code = string(code)
+
+		} else if strings.HasPrefix(line, "#") {
+			newSlide.Contents += "<h1>" + strings.TrimPrefix(line, "#") + "</h1>\n"
 		} else {
 			newSlide.Contents += line
-			newSlide.Contents += "\n"
+			newSlide.Contents += "</br>\n"
 		}
 	}
 

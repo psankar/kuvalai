@@ -9,7 +9,7 @@ function executeCode(i) {
 
     $.getJSON('http://localhost:8080', parameters)
         .done(function(str) {
-            document.getElementById('kuvOutput1').innerHTML = str.Output;
+            document.getElementById('kuvOutput' + i).innerHTML = str.Output;
         })
         .fail(function(e) {
             alert("Error: Check if the compiler server is running correctly.");
