@@ -7,7 +7,7 @@ function executeCode(i) {
         })
     };
 
-    $.getJSON('http://localhost:8080', parameters)
+    $.getJSON('http://localhost:8080/Compile', parameters)
         .done(function(str) {
             document.getElementById('kuvOutput' + i).innerHTML = str.Output;
         })
