@@ -21,7 +21,10 @@ the bootstrap project page for their license.
 
 #Usage
 + Install Go from http://golang.org
-+ Edit kuvalai-example.md file as per you wish. Follow the styles mentioned in the same file for splitting slides, mentioning code files etc.
++ Edit kuvalai-example.md file as per your wish. Follow the styles mentioned in the same file for splitting slides, mentioning code files etc.
 + go run kuvalai-server.go
 + Visit http://localhost:8080/
-+ Edit the sources in the slides as you wish and press the Execute button. The program that you have typed will be executed and the output will be printed in the textarea. If there is a compilation error, the compiler error too will be printed the same place.
++ Edit the sources in the slides as you wish and press the Execute button. The program that you have typed will be executed and the output will be printed in the textarea. If there is a compilation error, the compiler error too will be printed the same place
+
+##Warning
+Since anyone can execute any code in your machine, via this app, please run this only in a trusted intranet with limited set of audience
