@@ -23,38 +23,30 @@ type Code struct {
 
 func compilerService(w http.ResponseWriter, req *http.Request) {
 
-	fmt.Println("New request came")
-
 	/* Get the source code */
 	err := req.ParseForm()
 	if err != nil {
-		fmt.Println("Error parsing form")
-		fmt.Println(err)
+		panic(err)
 		return
 	}
 	var c Code
 	err = json.Unmarshal([]byte(req.Form["a"][0]), &c)
 	if err != nil {
-		fmt.Println("Error")
-		fmt.Println(err)
+		panic(err)
 		return
 	}
-	fmt.Println(c.Code)
 
 	/* create a temporary file with the passed sourcecode as the content */
 	var tmpFile *os.File
 	tmpFile, err = ioutil.TempFile("", "")
 	if err != nil {
-		fmt.Println("Error creating temporary file")
-		fmt.Println(err)
+		panic(err)
 		return
 	}
 	tmpFileName := tmpFile.Name()
-	fmt.Println("Temporary file created is: " + tmpFileName)
 	_, err = tmpFile.WriteString(c.Code)
 	if err != nil {
-		fmt.Println("Error writing to the temporary file")
-		fmt.Println(err)
+		panic(err)
 		return
 	}
 
@@ -67,7 +59,7 @@ func compilerService(w http.ResponseWriter, req *http.Request) {
 	cmd.Stderr = &out
 	err = cmd.Run()
 	if err != nil {
-		fmt.Println("Error running the compiler command")
+		fmt.Println("Compilation error")
 		fmt.Println(err)
 	} else {
 		cmd = exec.Command(tmpFileName + ".out")
@@ -97,8 +89,7 @@ func compilerService(w http.ResponseWriter, req *http.Request) {
 	var b []byte
 	b, err = json.Marshal(m)
 	if err != nil {
-		fmt.Println("Error")
-		fmt.Println(err)
+		panic(err)
 		return
 	}
 	w.Write(b)
@@ -138,12 +129,6 @@ func kuvalaiServer(w http.ResponseWriter, req *http.Request) {
 <body>
     <div>
         <div id="m" class="carousel slide">
-            <!-- Carousel indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#m" data-slide-to="0" class="active"></li>
-                <li data-target="#m" data-slide-to="1"></li>
-                <li data-target="#m" data-slide-to="2"></li>
-            </ol>
             <!-- Carousel items -->
             <div class="carousel-inner">`)
 
@@ -154,14 +139,14 @@ func kuvalaiServer(w http.ResponseWriter, req *http.Request) {
 		line := scanner.Text()
 
 		if strings.HasPrefix(line, "---") {
-			fmt.Println("End of a slide reached", newSlide.Contents)
 			/* Write slide into the file as html */
 
 			var tmplString string
+			tmplString = "\n" + "<!-- Slide {{.SlideNumber}} -->" + "\n"
 			if newSlide.SlideNumber == 1 {
-				tmplString = `                <div class="active item">` + "\n"
+				tmplString += `                <div class="active item">` + "\n"
 			} else {
-				tmplString = `                <div class="item">` + "\n"
+				tmplString += `                <div class="item">` + "\n"
 			}
 
 			tmplString += `                    <div class="row" style="margin:1px">` + "\n"
@@ -223,7 +208,17 @@ func kuvalaiServer(w http.ResponseWriter, req *http.Request) {
             <!-- Carousel nav -->
             <button class="previous" href="#m" data-slide="prev">Prev</button>
             <button class="next" href="#m" data-slide="next">Next</button>
-        </div>
+            <!-- Carousel indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#m" data-slide-to="0" class="active"></li>` + "\n")
+
+	/* The -1 is needed below as li carousel-indicators begin at 0 not 1 */
+	for i := 1; i < newSlide.SlideNumber-1; i++ {
+		fmt.Fprintf(output, "                <li data-target=\"#m\" data-slide-to=\"%d\"></li>\n", i)
+	}
+
+	fmt.Fprint(output, `            </ol>
+	</div>
     </div>
 </body>
 
