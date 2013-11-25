@@ -85,11 +85,11 @@ func compilerService(w http.ResponseWriter, req *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
 	var result string
-	result = out.String ()	
+	result = out.String()
 
 	/* Format the output in case of error, replace the filename to sample.cpp */
-	if (err != nil) {
-		result = strings.Replace (result, tmpFileName, "sample.cpp", -1)
+	if err != nil {
+		result = strings.Replace(result, tmpFileName, "sample.cpp", -1)
 	}
 
 	m := Message{result}
